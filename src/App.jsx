@@ -1,17 +1,25 @@
-import { BrowserRouter, Routes } from "react-router";
 import Layout from "./components/Layout";
-import Home from "./pages/Home";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
+import Beranda from "./pages/Beranda";
+import Layanan from "./pages/Layanan";
+import Pemesanan from "./pages/Pemesanan";
+import Promo from "./pages/Promo";
+import Tentang from "./pages/Tentang";
 
 function App() {
   return (
-    <BrowserRoute>
-     <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route path="/" element={<Home />} />
-      </Route>
-     </Routes>
-    </BrowserRoute>
-  );
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route path="/" element={<Beranda />} />
+          <Route path="/layanan" element={<Layanan />} />
+          <Route path="/promo" element={<Promo />} />
+          <Route path="/tentang" element={<Tentang />} />
+          <Route path="/pemesanan" element={<Pemesanan/>} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  )
 }
 
 export default App;
