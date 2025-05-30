@@ -103,7 +103,7 @@ export default function Navbar({ currentPage, onNavigate }) {
               onClick={() => handleNavigation('pemesanan')}
               className="bg-[#75daff] text-white px-6 py-2 rounded-full hover:bg-[#73a6ff] transition-colors"
             >
-              Pemesanan
+              Pesan Sekarang
             </button>
           </div>
 
@@ -170,7 +170,7 @@ export default function Navbar({ currentPage, onNavigate }) {
                 onClick={() => handleNavigation('pemesanan')}
                 className="bg-[#75daff] text-white px-6 py-2 rounded-full hover:bg-[#73a6ff] transition-colors text-center"
               >
-                Pemesanan
+                Pesan Sekarang
               </button>
             </div>
           </div>
