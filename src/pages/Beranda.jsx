@@ -1,120 +1,46 @@
-"use client";
-
-import { useState } from "react";
-
+"use client"
 
 // Custom Card component
 const Card = ({ children, className = "" }) => (
-  <div
-    className={`bg-white rounded-lg border border-gray-200 shadow-lg ${className}`}
-  >
-    {children}
-  </div>
-);
+  <div className={`bg-white rounded-lg border border-gray-200 shadow-lg ${className}`}>{children}</div>
+)
 
-const CardContent = ({ children, className = "" }) => (
-  <div className={`p-6 ${className}`}>{children}</div>
-);
+const CardContent = ({ children, className = "" }) => <div className={`p-6 ${className}`}>{children}</div>
 
 // Custom Button component
-const Button = ({
-  children,
-  className = "",
-  variant = "default",
-  size = "default",
-  onClick,
-  ...props
-}) => {
+const Button = ({ children, className = "", variant = "default", size = "default", onClick, ...props }) => {
   const baseClasses =
-    "inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none";
+    "inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none"
 
   const variants = {
-    default: "bg-slate-900 text-white hover:bg-slate-800",
+    default: "bg-[#75daff] text-white hover:bg-[#73a6ff]",
     ghost: "hover:bg-accent hover:text-accent-foreground",
-    outline: "border border-slate-900 text-slate-900 hover:bg-slate-50",
-    white: "bg-white text-slate-900 hover:bg-gray-50 border border-slate-200",
-    blue: "bg-[#75daff] text-white hover:bg-blue-700",
-  };
+    outline: "border border-[#75daff] text-[#75daff] hover:bg-[#caf1ff]",
+    white: "bg-white text-[#75daff] hover:bg-gray-50 border border-gray-200",
+  }
 
   const sizes = {
     default: "h-10 py-2 px-4",
     icon: "h-10 w-10",
     lg: "h-12 px-8 text-lg",
-  };
+  }
 
   return (
-    <button
-      className={`${baseClasses} ${variants[variant]} ${sizes[size]} ${className}`}
-      onClick={onClick}
-      {...props}
-    >
+    <button className={`${baseClasses} ${variants[variant]} ${sizes[size]} ${className}`} onClick={onClick} {...props}>
       {children}
     </button>
-  );
-};
+  )
+}
 
 // Simple icons as SVG components
-const ChevronLeft = ({ className = "" }) => (
-  <svg
-    className={className}
-    fill="none"
-    stroke="currentColor"
-    viewBox="0 0 24 24"
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth={2}
-      d="M15 19l-7-7 7-7"
-    />
-  </svg>
-);
-
-const ChevronRight = ({ className = "" }) => (
-  <svg
-    className={className}
-    fill="none"
-    stroke="currentColor"
-    viewBox="0 0 24 24"
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth={2}
-      d="M9 5l7 7-7 7"
-    />
-  </svg>
-);
-
-const X = ({ className = "" }) => (
-  <svg
-    className={className}
-    fill="none"
-    stroke="currentColor"
-    viewBox="0 0 24 24"
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth={2}
-      d="M6 18L18 6M6 6l12 12"
-    />
-  </svg>
-);
-
 const Star = ({ className = "" }) => (
   <svg className={className} fill="currentColor" viewBox="0 0 24 24">
     <path d="M12 2l3.09 6.26L22 9l-5.91 3.74L18 19l-6-4.74L6 19l1.91-6.26L2 9l6.91-1.74L12 2z" />
   </svg>
-);
+)
 
 const CheckCircle = ({ className = "" }) => (
-  <svg
-    className={className}
-    fill="none"
-    stroke="currentColor"
-    viewBox="0 0 24 24"
-  >
+  <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
     <path
       strokeLinecap="round"
       strokeLinejoin="round"
@@ -122,15 +48,10 @@ const CheckCircle = ({ className = "" }) => (
       d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
     />
   </svg>
-);
+)
 
 const Users = ({ className = "" }) => (
-  <svg
-    className={className}
-    fill="none"
-    stroke="currentColor"
-    viewBox="0 0 24 24"
-  >
+  <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
     <path
       strokeLinecap="round"
       strokeLinejoin="round"
@@ -138,15 +59,10 @@ const Users = ({ className = "" }) => (
       d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"
     />
   </svg>
-);
+)
 
 const Award = ({ className = "" }) => (
-  <svg
-    className={className}
-    fill="none"
-    stroke="currentColor"
-    viewBox="0 0 24 24"
-  >
+  <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
     <path
       strokeLinecap="round"
       strokeLinejoin="round"
@@ -154,15 +70,10 @@ const Award = ({ className = "" }) => (
       d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"
     />
   </svg>
-);
+)
 
 const Clock = ({ className = "" }) => (
-  <svg
-    className={className}
-    fill="none"
-    stroke="currentColor"
-    viewBox="0 0 24 24"
-  >
+  <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
     <path
       strokeLinecap="round"
       strokeLinejoin="round"
@@ -170,15 +81,10 @@ const Clock = ({ className = "" }) => (
       d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
     />
   </svg>
-);
+)
 
 const MessageCircle = ({ className = "" }) => (
-  <svg
-    className={className}
-    fill="none"
-    stroke="currentColor"
-    viewBox="0 0 24 24"
-  >
+  <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
     <path
       strokeLinecap="round"
       strokeLinejoin="round"
@@ -186,15 +92,10 @@ const MessageCircle = ({ className = "" }) => (
       d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
     />
   </svg>
-);
+)
 
 const Heart = ({ className = "" }) => (
-  <svg
-    className={className}
-    fill="none"
-    stroke="currentColor"
-    viewBox="0 0 24 24"
-  >
+  <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
     <path
       strokeLinecap="round"
       strokeLinejoin="round"
@@ -202,123 +103,10 @@ const Heart = ({ className = "" }) => (
       d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
     />
   </svg>
-);
-
-const Upload = ({ className = "" }) => (
-  <svg
-    className={className}
-    fill="none"
-    stroke="currentColor"
-    viewBox="0 0 24 24"
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth={2}
-      d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
-    />
-  </svg>
-);
-
-const Home = ({ className = "" }) => (
-  <svg
-    className={className}
-    fill="none"
-    stroke="currentColor"
-    viewBox="0 0 24 24"
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth={2}
-      d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-    />
-  </svg>
-);
-
-const Building = ({ className = "" }) => (
-  <svg
-    className={className}
-    fill="none"
-    stroke="currentColor"
-    viewBox="0 0 24 24"
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth={2}
-      d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
-    />
-  </svg>
-);
-
-const Square = ({ className = "" }) => (
-  <svg
-    className={className}
-    fill="none"
-    stroke="currentColor"
-    viewBox="0 0 24 24"
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth={2}
-      d="M4 6h16M4 12h16M4 18h16"
-    />
-  </svg>
-);
-
-const Eye = ({ className = "" }) => (
-  <svg
-    className={className}
-    fill="none"
-    stroke="currentColor"
-    viewBox="0 0 24 24"
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth={2}
-      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-    />
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth={2}
-      d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-    />
-  </svg>
-);
-
-const Hammer = ({ className = "" }) => (
-  <svg
-    className={className}
-    fill="none"
-    stroke="currentColor"
-    viewBox="0 0 24 24"
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth={2}
-      d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
-    />
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth={2}
-      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-    />
-  </svg>
-);
+)
 
 const Shield = ({ className = "" }) => (
-  <svg
-    className={className}
-    fill="none"
-    stroke="currentColor"
-    viewBox="0 0 24 24"
-  >
+  <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
     <path
       strokeLinecap="round"
       strokeLinejoin="round"
@@ -326,161 +114,157 @@ const Shield = ({ className = "" }) => (
       d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
     />
   </svg>
-);
+)
 
-export default function Beranda() {
-  const [selectedService, setSelectedService] = useState(null);
+const ArrowRight = ({ className = "" }) => (
+  <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+  </svg>
+)
 
+const Target = ({ className = "" }) => (
+  <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+    />
+  </svg>
+)
+
+export default function Beranda({ onNavigate }) {
+  // Data layanan sesuai dengan Layanan.jsx
   const services = [
     {
       id: 1,
       title: "Pembersihan Rumah",
-      price: "Rp 150.000",
-      icon: Home,
-      description:
-        "Pembersihan menyeluruh untuk rumah tinggal dengan standar profesional",
+      description: "Layanan pembersihan rumah menyeluruh untuk kenyamanan keluarga Anda",
+      icon: "🏠",
+      price: "Mulai dari Rp 150.000",
+      duration: "2-4 jam",
       features: [
-        "Pembersihan semua ruangan",
-        "Vacuum dan pel lantai",
+        "Pembersihan seluruh ruangan",
+        "Vacuum karpet dan sofa",
         "Pembersihan kamar mandi",
         "Pembersihan dapur",
       ],
-      duration: "3-4 jam",
     },
     {
       id: 2,
       title: "Pembersihan Kantor",
-      price: "Rp 200.000",
-      icon: Building,
-      description:
-        "Layanan pembersihan kantor untuk lingkungan kerja yang bersih dan sehat",
+      description: "Buat lingkungan kerja lebih nyaman dan produktif dengan layanan pembersihan kantor kami",
+      icon: "🏢",
+      price: "Mulai dari Rp 200.000",
+      duration: "3-6 jam",
       features: [
-        "Pembersihan meja kerja",
-        "Vacuum karpet",
+        "Pembersihan area kerja",
+        "Pembersihan meeting room",
+        "Pembersihan pantry/dapur",
         "Pembersihan toilet",
-        "Pembersihan pantry",
       ],
-      duration: "2-3 jam",
     },
     {
       id: 3,
       title: "Pembersihan Karpet",
-      price: "Rp 25.000/m²",
-      icon: Square,
-      description:
-        "Pembersihan karpet mendalam dengan teknologi modern untuk hasil maksimal",
+      description: "Bersihkan karpet dari debu, kotoran, dan bakteri dengan teknologi modern",
+      icon: "🧹",
+      price: "Mulai dari Rp 50.000/m²",
+      duration: "1-3 jam",
       features: [
-        "Deep cleaning karpet",
-        "Penghilangan noda",
-        "Disinfeksi anti bakteri",
+        "Deep cleaning dengan mesin khusus",
+        "Penghilangan noda membandel",
+        "Sanitasi anti bakteri",
         "Pengeringan cepat",
       ],
-      duration: "2-3 jam",
     },
-    {
-      id: 4,
-      title: "Pembersihan Jendela",
-      price: "Rp 15.000/m²",
-      icon: Eye,
-      description:
-        "Pembersihan jendela profesional untuk pandangan yang jernih dan bersih",
-      features: [
-        "Pembersihan kaca dalam & luar",
-        "Pembersihan frame jendela",
-        "Hasil bebas goresan",
-        "Akses tinggi aman",
-      ],
-      duration: "1-2 jam",
-    },
-    {
-      id: 5,
-      title: "Pembersihan Pasca Konstruksi",
-      price: "Rp 35.000/m²",
-      icon: Hammer,
-      description:
-        "Pembersihan menyeluruh setelah renovasi atau konstruksi bangunan",
-      features: [
-        "Pembersihan debu konstruksi",
-        "Pembersihan sisa material",
-        "Pembersihan menyeluruh",
-        "Siap huni",
-      ],
-      duration: "4-8 jam",
-    },
-  ];
+  ]
 
+  // Data promo sesuai dengan Promo.jsx
+  const promos = [
+    {
+      title: "Diskon 25% Semua Layanan",
+      subtitle: "Bersih Hemat di Awal Bulan!",
+      description: "Dapatkan diskon 25% untuk semua jenis layanan cleaning tanpa minimum order.",
+      code: "BERSIH25",
+      badge: "Spesial Bulan Ini",
+      valid: "s/d 15 Juni 2025",
+    },
+    {
+      title: "Bundling Keluarga Hemat",
+      subtitle: "Pesan 3x, GRATIS 1x",
+      description: "Booking layanan cleaning 3 kali, dapat 1x sesi gratis untuk rumah/kantor yang sama.",
+      code: "BUNDEL4",
+      badge: "Hot Deal",
+      valid: "Untuk 50 customer pertama",
+    },
+    {
+      title: "First Order Bonus Disinfektan",
+      subtitle: "Pelanggan Baru = Bebas Kuman!",
+      description: "Khusus order pertama, dapatkan layanan semprot disinfektan GRATIS.",
+      code: "AUTOMATIC",
+      badge: "Welcome Gift",
+      valid: "Otomatis order pertama",
+    },
+  ]
+
+  // Data testimonial
   const testimonials = [
     {
       id: 1,
-      name: "Sarah Wijaya",
-      location: "Jakarta Selatan",
+      name: "Ayu Pratiwi",
+      review:
+        "Promo BERSIH25 beneran bikin hemat! Rumahku jadi kinclong, petugasnya ramah dan ontime. Mantap banget, recommended!",
       rating: 5,
-      comment:
-        "Pelayanan Bershine sangat memuaskan! Rumah jadi bersih total dan tim sangat profesional. Pasti pakai lagi!",
       service: "Pembersihan Rumah",
     },
     {
       id: 2,
       name: "Budi Santoso",
-      location: "Tangerang",
+      review:
+        "Suka banget sama bonus disinfektan. Proses booking mudah, hasil bersih maksimal, harga promo bikin nagih, pokoknya puas.",
       rating: 5,
-      comment:
-        "Pembersihan kantor sangat bagus. Ruangan jadi bersih total dan wangi. Harga juga reasonable.",
       service: "Pembersihan Kantor",
     },
     {
       id: 3,
-      name: "Maya Putri",
-      location: "Bekasi",
+      name: "Linda Wijaya",
+      review:
+        "Bundling keluarga sangat membantu, apalagi buat yang sering butuh cleaning rutin. Terima kasih Bershine!",
       rating: 5,
-      comment:
-        "Pembersihan karpet di rumah hasilnya luar biasa. Noda yang sudah lama hilang semua. Terima kasih Bershine!",
       service: "Pembersihan Karpet",
     },
-  ];
-
-  const handleServiceClick = (service) => {
-    setSelectedService(service);
-  };
-
-  const closeModal = () => {
-    setSelectedService(null);
-  };
+  ]
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <div className="relative bg-white text-slate-900 overflow-hidden">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-5">
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fillRule='evenodd'%3E%3Cg fill='%23000000' fillOpacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-            }}
-          ></div>
-        </div>
-
-        <div className="relative max-w-7xl mx-auto px-4 py-20 lg:py-32">
+      <section className="bg-[#75daff] text-white py-16">
+        <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Content */}
             <div className="text-center lg:text-left">
-              <h1 className="text-5xl lg:text-7xl font-bold mb-6 leading-tight">
+              <h1 className="text-4xl lg:text-6xl font-bold mb-6 leading-tight">
                 Layanan
-                <span className="block text-[#75daff]">Kebersihan</span>
+                <span className="block text-white">Kebersihan</span>
                 <span className="block">Terpercaya</span>
               </h1>
 
-              <p className="text-xl lg:text-2xl mb-8 text-slate-600 leading-relaxed">
-                Solusi lengkap untuk semua kebutuhan kebersihan rumah dan kantor
-                Anda. Teknisi profesional, peralatan modern, hasil maksimal.
+              <p className="text-xl lg:text-2xl mb-8 text-white/90 leading-relaxed">
+                Solusi lengkap untuk semua kebutuhan kebersihan rumah dan kantor Anda. Tim profesional, peralatan
+                modern, hasil maksimal.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-12">
-                <Button size="lg" className="font-semibold">
+                <Button size="lg" variant="white" className="font-semibold" onClick={() => onNavigate("pemesanan")}>
                   Pesan Sekarang
                 </Button>
-                <Button size="lg" variant="outline" className="font-semibold">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-white text-white hover:bg-white hover:text-[#75daff] font-semibold"
+                  onClick={() => onNavigate("layanan")}
+                >
                   Lihat Layanan
                 </Button>
               </div>
@@ -488,28 +272,16 @@ export default function Beranda() {
               {/* Stats */}
               <div className="grid grid-cols-3 gap-8 text-center">
                 <div>
-                  <div className="text-3xl lg:text-4xl font-bold text-slate-900 mb-2">
-                    10K+
-                  </div>
-                  <div className="text-sm lg:text-base text-slate-600">
-                    Pelanggan Puas
-                  </div>
+                  <div className="text-3xl lg:text-4xl font-bold text-white mb-2">500+</div>
+                  <div className="text-sm lg:text-base text-white/80">Pelanggan Puas</div>
                 </div>
                 <div>
-                  <div className="text-3xl lg:text-4xl font-bold text-slate-900 mb-2">
-                    5★
-                  </div>
-                  <div className="text-sm lg:text-base text-slate-600">
-                    Rating Rata-rata
-                  </div>
+                  <div className="text-3xl lg:text-4xl font-bold text-white mb-2">5+</div>
+                  <div className="text-sm lg:text-base text-white/80">Tahun Pengalaman</div>
                 </div>
                 <div>
-                  <div className="text-3xl lg:text-4xl font-bold text-slate-900 mb-2">
-                    24/7
-                  </div>
-                  <div className="text-sm lg:text-base text-slate-600">
-                    Layanan Siap
-                  </div>
+                  <div className="text-3xl lg:text-4xl font-bold text-white mb-2">24/7</div>
+                  <div className="text-sm lg:text-base text-white/80">Layanan Siaga</div>
                 </div>
               </div>
             </div>
@@ -518,10 +290,10 @@ export default function Beranda() {
             <div className="relative flex justify-center">
               <div className="relative">
                 {/* Main Phone */}
-                <div className="w-80 h-[600px] bg-slate-900 rounded-[3rem] p-3 shadow-2xl">
+                <div className="w-80 h-[600px] bg-gray-800 rounded-[3rem] p-3 shadow-2xl">
                   <div className="w-full h-full bg-white rounded-[2.5rem] overflow-hidden">
                     {/* Status bar */}
-                    <div className="bg-slate-900 px-6 py-3 flex justify-between items-center text-xs font-medium text-white">
+                    <div className="bg-[#75daff] px-6 py-3 flex justify-between items-center text-xs font-medium text-white">
                       <span>18:14</span>
                       <div className="flex items-center gap-1">
                         <span>100%</span>
@@ -532,81 +304,47 @@ export default function Beranda() {
                     <div className="px-6 py-4">
                       {/* Header */}
                       <div className="flex items-center justify-between mb-6">
-                        <div className="text-slate-900 text-2xl font-bold">
-                          Ber<span className="text-[#75daff]">Shine</span>
+                        <div className="text-[#75daff] text-2xl font-bold">
+                          Ber<span className="text-[#b5d0ff]">Shine</span>
                         </div>
-                        <div className="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center">
-                          <Users className="h-5 w-5 text-slate-900" />
+                        <div className="w-10 h-10 bg-[#caf1ff] rounded-full flex items-center justify-center">
+                          <Users className="h-5 w-5 text-[#75daff]" />
                         </div>
                       </div>
 
                       {/* Location */}
-                      <div className="bg-slate-50 rounded-lg p-4 mb-6 border border-slate-200">
-                        <div className="text-sm text-slate-600 mb-1">
-                          📍 Lokasi Anda
-                        </div>
-                        <div className="text-slate-900 font-medium">
-                          Jakarta Selatan
-                        </div>
+                      <div className="bg-[#caf1ff] rounded-lg p-4 mb-6 border border-[#b5d0ff]">
+                        <div className="text-sm text-[#75daff] mb-1">📍 Lokasi Anda</div>
+                        <div className="text-gray-800 font-medium">Palembang</div>
                       </div>
 
                       {/* User greeting */}
                       <div className="flex items-center gap-3 mb-6">
-                        <div className="w-12 h-12 bg-slate-900 rounded-full flex items-center justify-center">
+                        <div className="w-12 h-12 bg-[#75daff] rounded-full flex items-center justify-center">
                           <span className="text-white font-medium">FA</span>
                         </div>
                         <div>
-                          <div className="font-semibold text-gray-800">
-                            Hi Fitria!
-                          </div>
-                          <div className="text-sm text-gray-600">
-                            Mau bersih-bersih apa hari ini?
-                          </div>
+                          <div className="font-semibold text-gray-800">Hi Yanto!</div>
+                          <div className="text-sm text-gray-600">Mau bersih-bersih apa hari ini?</div>
                         </div>
                       </div>
 
                       {/* Service grid */}
                       <div className="grid grid-cols-3 gap-3">
                         {[
-                          {
-                            name: "Rumah",
-                            color: "bg-slate-100 border border-slate-200",
-                            icon: "🏠",
-                          },
-                          {
-                            name: "Kantor",
-                            color: "bg-slate-100 border border-slate-200",
-                            icon: "🏢",
-                          },
-                          {
-                            name: "Karpet",
-                            color: "bg-slate-100 border border-slate-200",
-                            icon: "🧽",
-                          },
-                          {
-                            name: "Jendela",
-                            color: "bg-slate-100 border border-slate-200",
-                            icon: "🪟",
-                          },
-                          {
-                            name: "Konstruksi",
-                            color: "bg-slate-100 border border-slate-200",
-                            icon: "🔨",
-                          },
-                          {
-                            name: "Lainnya",
-                            color: "bg-slate-100 border border-slate-200",
-                            icon: "➕",
-                          },
+                          { name: "Rumah", color: "bg-[#caf1ff] border border-[#b5d0ff]", icon: "🏠" },
+                          { name: "Kantor", color: "bg-[#caf1ff] border border-[#b5d0ff]", icon: "🏢" },
+                          { name: "Karpet", color: "bg-[#caf1ff] border border-[#b5d0ff]", icon: "🧽" },
+                          { name: "Jendela", color: "bg-[#caf1ff] border border-[#b5d0ff]", icon: "🪟" },
+                          { name: "Konstruksi", color: "bg-[#caf1ff] border border-[#b5d0ff]", icon: "🔨" },
+                          { name: "Lainnya", color: "bg-[#caf1ff] border border-[#b5d0ff]", icon: "➕" },
                         ].map((service, index) => (
                           <div
                             key={index}
-                            className={`${service.color} rounded-xl p-4 aspect-square flex flex-col justify-between hover:bg-slate-200 transition-colors`}
+                            className={`${service.color} rounded-xl p-4 aspect-square flex flex-col justify-between hover:bg-[#b5d0ff] transition-colors`}
                           >
-                            <div className="text-center text-2xl">
-                              {service.icon}
-                            </div>
-                            <div className="text-xs font-medium text-center leading-tight text-slate-900">
+                            <div className="text-center text-2xl">{service.icon}</div>
+                            <div className="text-xs font-medium text-center leading-tight text-[#75daff]">
                               {service.name}
                             </div>
                           </div>
@@ -627,17 +365,17 @@ export default function Beranda() {
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
       {/* How It Works Section */}
-      <div className="py-20 px-4 bg-slate-50">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-slate-900 mb-4">
-              Rumah Bersih dengan <span className="text-[#75daff]">1 Klik</span>
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+              Rumah Bersih dengan <span className="text-[#75daff]">3 Langkah Mudah</span>
             </h2>
-            <p className="text-xl text-slate-600">
-              Proses mudah dan cepat untuk mendapatkan layanan terbaik
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Proses booking yang simpel dan hasil yang memuaskan
             </p>
           </div>
 
@@ -645,470 +383,278 @@ export default function Beranda() {
             {/* Step 1 - Pesan */}
             <div className="text-center group">
               <div className="relative mb-8">
-                <div className="w-24 h-24 bg-slate-900 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-slate-800 transition-colors shadow-lg">
+                <div className="w-24 h-24 bg-[#75daff] rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-[#73a6ff] transition-colors shadow-lg">
                   <CheckCircle className="h-12 w-12 text-white" />
                 </div>
-                <div className="absolute -top-2 -right-2 bg-[#75daff] text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold">
+                <div className="absolute -top-2 -right-2 bg-[#b5d0ff] text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold">
                   1
                 </div>
               </div>
-              <h3 className="text-2xl font-bold text-slate-900 mb-4">Pesan</h3>
-              <p className="text-slate-600 leading-relaxed mb-6">
-                Pesan berbagai macam layanan jasa kebersihan dan perawatan
-                perabotan rumah Anda melalui aplikasi Bershine
+              <h3 className="text-2xl font-bold text-gray-800 mb-4">Pilih & Pesan</h3>
+              <p className="text-gray-600 leading-relaxed mb-6">
+                Pilih layanan yang dibutuhkan, tentukan jadwal, dan lakukan pemesanan melalui website atau aplikasi
+                Bershine
               </p>
-
-              {/* Upload Photo Feature */}
-              <div className="bg-white rounded-lg p-4 border-2 border-dashed border-slate-300 hover:border-blue-400 transition-colors shadow-sm">
-                <Upload className="h-8 w-8 text-[#75daff] mx-auto mb-2" />
-                <p className="text-sm text-[#75daff]font-medium">
-                  Upload Foto Ruangan
-                </p>
-                <p className="text-xs text-slate-500 mt-1">
-                  Untuk estimasi yang lebih akurat
-                </p>
-              </div>
+              <button
+                className="bg-[#caf1ff] text-[#75daff] px-6 py-2 rounded-lg font-medium hover:bg-[#b5d0ff] transition-colors"
+                onClick={() => onNavigate("pemesanan")}
+              >
+                Mulai Pesan
+              </button>
             </div>
 
             {/* Step 2 - Chat */}
             <div className="text-center group">
               <div className="relative mb-8">
-                <div className="w-24 h-24 bg-slate-900 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-slate-800 transition-colors shadow-lg">
+                <div className="w-24 h-24 bg-[#75daff] rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-[#73a6ff] transition-colors shadow-lg">
                   <MessageCircle className="h-12 w-12 text-white" />
                 </div>
-                <div className="absolute -top-2 -right-2 bg-[#75daff] text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold">
+                <div className="absolute -top-2 -right-2 bg-[#b5d0ff] text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold">
                   2
                 </div>
               </div>
-              <h3 className="text-2xl font-bold text-slate-900 mb-4">Chat</h3>
-              <p className="text-slate-600 leading-relaxed">
-                Sambil menunggu layanan jasa tiba di rumah, Anda bisa chat
-                dengan helper kami melalui fitur chat di aplikasi Bershine
+              <h3 className="text-2xl font-bold text-gray-800 mb-4">Konfirmasi</h3>
+              <p className="text-gray-600 leading-relaxed">
+                Tim kami akan menghubungi Anda untuk konfirmasi detail layanan dan memastikan semua kebutuhan terpenuhi
               </p>
             </div>
 
             {/* Step 3 - Enjoy */}
             <div className="text-center group">
               <div className="relative mb-8">
-                <div className="w-24 h-24 bg-slate-900 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-slate-800 transition-colors shadow-lg">
+                <div className="w-24 h-24 bg-[#75daff] rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-[#73a6ff] transition-colors shadow-lg">
                   <Heart className="h-12 w-12 text-white" />
                 </div>
-                <div className="absolute -top-2 -right-2 bg-[#75daff] text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold">
+                <div className="absolute -top-2 -right-2 bg-[#b5d0ff] text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold">
                   3
                 </div>
               </div>
-              <h3 className="text-2xl font-bold text-slate-900 mb-4">Enjoy</h3>
-              <p className="text-slate-600 leading-relaxed">
-                Helper kami melakukan perawatan dan pembersihan rumah serta
-                perabotan dengan maksimal. Dibekali dengan perlengkapan yang
-                tepat untuk setiap layanannya. Semuanya dilakukan secara
-                profesional untuk kualitas hasil yang memuaskan
+              <h3 className="text-2xl font-bold text-gray-800 mb-4">Nikmati Hasilnya</h3>
+              <p className="text-gray-600 leading-relaxed">
+                Tim profesional kami datang tepat waktu dan memberikan hasil pembersihan yang maksimal sesuai standar
+                kualitas tinggi
               </p>
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* Features Section */}
-      <div className="py-20 px-4 bg-white">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-slate-900 mb-4">
+      {/* Services Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+              Layanan Lengkap <span className="text-[#75daff]">Bershine</span>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Berbagai pilihan layanan profesional untuk kebutuhan kebersihan Anda
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {services.map((service) => (
+              <Card
+                key={service.id}
+                className="relative overflow-hidden transition-all duration-300 hover:shadow-xl hover:scale-105 border-2 hover:border-[#b5d0ff]"
+              >
+                <CardContent className="p-8 text-center">
+                  <div className="text-4xl mb-4">{service.icon}</div>
+                  <h3 className="text-xl font-bold text-gray-800 mb-3">{service.title}</h3>
+                  <p className="text-2xl font-bold text-[#75daff] mb-4">{service.price}</p>
+                  <p className="text-gray-600 mb-6 text-sm leading-relaxed">{service.description}</p>
+
+                  <div className="mb-6">
+                    <ul className="space-y-2 text-left">
+                      {service.features.map((feature, idx) => (
+                        <li key={idx} className="flex items-start text-sm">
+                          <CheckCircle className="h-4 w-4 text-[#75daff] mr-2 mt-0.5 flex-shrink-0" />
+                          <span className="text-gray-600">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="flex items-center justify-center text-sm text-gray-500 mb-4">
+                    <Clock className="h-4 w-4 mr-1" />
+                    <span>{service.duration}</span>
+                  </div>
+
+                  <Button
+                    className="w-full rounded-full py-3 px-6 font-semibold"
+                    onClick={() => onNavigate("pemesanan")}
+                  >
+                    Pesan Sekarang
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <Button size="lg" variant="outline" className="font-semibold" onClick={() => onNavigate("layanan")}>
+              Lihat Semua Layanan
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Promo Section */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+              Promo Spesial <span className="text-[#75daff]">Bershine</span>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Dapatkan penawaran terbaik untuk layanan kebersihan berkualitas
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {promos.map((promo, idx) => (
+              <div
+                key={idx}
+                className="relative bg-gradient-to-br from-[#caf1ff] to-[#b5d0ff] rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+              >
+                <span className="absolute top-4 right-4 bg-[#75daff] text-white text-xs font-bold px-3 py-1 rounded-full">
+                  {promo.badge}
+                </span>
+
+                <h3 className="text-xl font-bold text-gray-800 mb-2">{promo.title}</h3>
+                <p className="text-[#75daff] font-semibold mb-4">{promo.subtitle}</p>
+                <p className="text-gray-700 mb-6 text-sm">{promo.description}</p>
+
+                <div className="bg-white rounded-lg p-4 mb-4">
+                  <div className="text-center">
+                    <span className="text-[#75daff] font-bold text-lg">Kode: {promo.code}</span>
+                    <p className="text-xs text-gray-500 mt-1">{promo.valid}</p>
+                  </div>
+                </div>
+
+                <button
+                  className="w-full bg-[#75daff] text-white py-3 rounded-lg font-semibold hover:bg-[#73a6ff] transition-colors"
+                  onClick={() => onNavigate("promo")}
+                >
+                  Lihat Detail Promo
+                </button>
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <Button size="lg" variant="outline" className="font-semibold" onClick={() => onNavigate("promo")}>
+              Lihat Semua Promo
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Why Choose Us */}
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
               Mengapa Memilih <span className="text-[#75daff]">Bershine?</span>
             </h2>
-            <p className="text-xl text-slate-600">
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
               Kepercayaan ribuan pelanggan adalah prioritas utama kami
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="text-center group">
-              <div className="w-20 h-20 bg-slate-900 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-slate-800 transition-colors">
-                <Shield className="h-10 w-10 text-white" />
-              </div>
-              <h3 className="text-xl font-semibold text-slate-900 mb-3">
-                Terpercaya & Aman
-              </h3>
-              <p className="text-slate-600">
-                Teknisi berpengalaman dan terverifikasi dengan asuransi lengkap
-              </p>
-            </div>
-
-            <div className="text-center group">
-              <div className="w-20 h-20 bg-slate-900 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-slate-800 transition-colors">
-                <Award className="h-10 w-10 text-white" />
-              </div>
-              <h3 className="text-xl font-semibold text-slate-900 mb-3">
-                Kualitas Premium
-              </h3>
-              <p className="text-slate-600">
-                Menggunakan peralatan modern dan produk pembersih berkualitas
-                tinggi
-              </p>
-            </div>
-
-            <div className="text-center group">
-              <div className="w-20 h-20 bg-slate-900 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-slate-800 transition-colors">
-                <Clock className="h-10 w-10 text-white" />
-              </div>
-              <h3 className="text-xl font-semibold text-slate-900 mb-3">
-                Layanan Cepat
-              </h3>
-              <p className="text-slate-600">
-                Booking mudah dan teknisi datang sesuai jadwal yang Anda
-                tentukan
-              </p>
-            </div>
-
-            <div className="text-center group">
-              <div className="w-20 h-20 bg-slate-900 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-slate-800 transition-colors">
+              <div className="w-20 h-20 bg-[#75daff] rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-[#73a6ff] transition-colors">
                 <Users className="h-10 w-10 text-white" />
               </div>
-              <h3 className="text-xl font-semibold text-slate-900 mb-3">
-                Tim Profesional
-              </h3>
-              <p className="text-slate-600">
-                Tim yang terlatih dan berpengalaman dalam berbagai jenis
-                pembersihan
-              </p>
+              <h3 className="text-xl font-semibold text-gray-800 mb-3">Tim Profesional</h3>
+              <p className="text-gray-600">Tim terlatih dan berpengalaman dengan sertifikasi resmi</p>
+            </div>
+
+            <div className="text-center group">
+              <div className="w-20 h-20 bg-[#75daff] rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-[#73a6ff] transition-colors">
+                <Shield className="h-10 w-10 text-white" />
+              </div>
+              <h3 className="text-xl font-semibold text-gray-800 mb-3">Asuransi & Jaminan</h3>
+              <p className="text-gray-600">Dilindungi asuransi dengan jaminan kepuasan 100%</p>
+            </div>
+
+            <div className="text-center group">
+              <div className="w-20 h-20 bg-[#75daff] rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-[#73a6ff] transition-colors">
+                <Clock className="h-10 w-10 text-white" />
+              </div>
+              <h3 className="text-xl font-semibold text-gray-800 mb-3">Tepat Waktu</h3>
+              <p className="text-gray-600">Selalu datang tepat waktu sesuai jadwal yang disepakati</p>
+            </div>
+
+            <div className="text-center group">
+              <div className="w-20 h-20 bg-[#75daff] rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-[#73a6ff] transition-colors">
+                <Award className="h-10 w-10 text-white" />
+              </div>
+              <h3 className="text-xl font-semibold text-gray-800 mb-3">Kualitas Terjamin</h3>
+              <p className="text-gray-600">Menggunakan peralatan modern dan bahan berkualitas tinggi</p>
             </div>
           </div>
-        </div>
-      </div>
 
-      {/* Services Section */}
-      <div className="py-20 px-4 bg-slate-50">
-        <div className="max-w-7xl mx-auto">
-          {/* Header */}
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
-              Layanan Lengkap <span className="text-[#75daff]">Bershine</span>
-            </h2>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              Pilih layanan terlengkap yang sesuai dengan kebutuhan hunian Anda.
-              Klik untuk melihat detail layanan.
-            </p>
-          </div>
-
-          {/* Services Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service) => {
-              const IconComponent = service.icon;
-
-              return (
-                <Card
-                  key={service.id}
-                  className="relative overflow-hidden transition-all duration-300 hover:shadow-xl hover:scale-105 cursor-pointer group border-2 hover:border-slate-300"
-                  onClick={() => handleServiceClick(service)}
-                >
-                  <CardContent className="p-8 text-center">
-                    {/* Icon Circle */}
-                    <div className="w-20 h-20 rounded-full mx-auto mb-6 flex items-center justify-center bg-slate-900 shadow-lg group-hover:bg-slate-800 transition-all duration-300">
-                      <IconComponent className="h-10 w-10 text-white" />
-                    </div>
-
-                    {/* Service Title */}
-                    <h3 className="text-xl font-bold text-slate-900 mb-3">
-                      {service.title}
-                    </h3>
-
-                    {/* Price */}
-                    <p className="text-2xl font-bold text-[#75daff] mb-4">
-                      {service.price}
-                    </p>
-
-                    {/* Description */}
-                    <p className="text-slate-600 mb-6 text-sm leading-relaxed">
-                      {service.description}
-                    </p>
-
-                    {/* Button Detil */}
-                     <Button
-                      className="cursor-pointer w-full rounded-full py-3 px-6 font-semibold text-lg group-hover:bg-slate-800 transition-all duration-300"
-                      onClick={() => onNavigate('layanan', service)}
-                    >
-                      Lihat Detail
-                    </Button>
-                  </CardContent>
-                </Card>
-              );
-            })}
+          <div className="text-center mt-12">
+            <Button size="lg" variant="outline" className="font-semibold" onClick={() => onNavigate("tentang")}>
+              Pelajari Lebih Lanjut
+            </Button>
           </div>
         </div>
-      </div>
+      </section>
 
       {/* Testimonials Section */}
-      <div className="py-20 px-4 bg-slate-900 text-white">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">
-              Apa Kata Pelanggan Kami?
-            </h2>
-            <p className="text-xl text-slate-300">
-              Kepuasan pelanggan adalah prioritas utama kami
-            </p>
+      <section className="py-16 bg-[#75daff] text-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Apa Kata Pelanggan Kami?</h2>
+            <p className="text-xl text-white/90 max-w-2xl mx-auto">Kepuasan pelanggan adalah prioritas utama kami</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {testimonials.map((testimonial) => (
-              <div
-                key={testimonial.id}
-                className="bg-white rounded-xl p-8 text-slate-900 shadow-lg"
-              >
-                {/* Stars */}
+              <div key={testimonial.id} className="bg-white rounded-xl p-8 text-gray-800 shadow-lg">
                 <div className="flex gap-1 mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => (
                     <Star key={i} className="h-5 w-5 text-yellow-400" />
                   ))}
                 </div>
-
-                {/* Comment */}
-                <p className="text-slate-600 mb-6 leading-relaxed">
-                  "{testimonial.comment}"
-                </p>
-
-                {/* Customer Info */}
+                <p className="text-gray-600 mb-6 leading-relaxed italic">"{testimonial.review}"</p>
                 <div className="border-t pt-4">
-                  <div className="font-semibold text-slate-900">
-                    {testimonial.name}
-                  </div>
-                  <div className="text-sm text-slate-500">
-                    {testimonial.location}
-                  </div>
-                  <div className="text-sm text-[#75daff] font-medium mt-1">
-                    {testimonial.service}
-                  </div>
+                  <div className="font-semibold text-gray-800">{testimonial.name}</div>
+                  <div className="text-sm text-[#75daff] font-medium mt-1">{testimonial.service}</div>
                 </div>
               </div>
             ))}
           </div>
 
-          {/* CTA */}
           <div className="text-center mt-12">
-            <Button variant="white" size="lg" className="font-semibold">
-              Bergabung dengan 10,000+ Pelanggan Puas
+            <Button variant="white" size="lg" className="font-semibold" onClick={() => onNavigate("tentang")}>
+              Bergabung dengan 500+ Pelanggan Puas
             </Button>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* Download App Section */}
-      <div className="py-20 px-4 bg-white">
-        <div className="max-w-6xl mx-auto">
-          <div className="bg-slate-50 rounded-2xl p-12 shadow-lg border border-slate-200">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              {/* Left Content */}
-              <div className="text-center lg:text-left">
-                <h2 className="text-4xl font-bold text-slate-900 mb-6">
-                  Download Aplikasi{" "}
-                  <span className="text-[#75daff]">Bershine</span>
-                </h2>
-                <p className="text-xl text-slate-600 mb-8">
-                  Pesan layanan kebersihan dengan mudah melalui aplikasi mobile
-                  kami. Tersedia di App Store dan Google Play Store.
-                </p>
-
-                {/* Download buttons */}
-                <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                  <button className="bg-slate-900 hover:bg-slate-800 text-white px-8 py-4 rounded-xl flex items-center gap-3 transition-all duration-300 transform hover:scale-105 shadow-lg">
-                    <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center">
-                      <span className="text-slate-900 font-bold text-lg">
-                        🍎
-                      </span>
-                    </div>
-                    <div className="text-left">
-                      <div className="text-xs">Download on the</div>
-                      <div className="text-lg font-semibold">App Store</div>
-                    </div>
-                  </button>
-
-                  <button className="bg-slate-900 hover:bg-slate-800 text-white px-8 py-4 rounded-xl flex items-center gap-3 transition-all duration-300 transform hover:scale-105 shadow-lg">
-                    <div className="w-8 h-8 bg-gradient-to-br from-blue-400 via-green-400 to-yellow-400 rounded-lg flex items-center justify-center">
-                      <span className="text-white font-bold">▶</span>
-                    </div>
-                    <div className="text-left">
-                      <div className="text-xs">GET IT ON</div>
-                      <div className="text-lg font-semibold">Google Play</div>
-                    </div>
-                  </button>
-                </div>
-              </div>
-
-              {/* Right Content - QR Codes */}
-              <div className="flex justify-center gap-8">
-                <div className="text-center">
-                  <div className="w-32 h-32 bg-white border-2 border-slate-300 rounded-lg p-2 mb-4 shadow-md">
-                    <div className="w-full h-full bg-slate-900 rounded grid grid-cols-8 gap-px p-1">
-                      {Array.from({ length: 64 }).map((_, i) => (
-                        <div
-                          key={i}
-                          className={`${
-                            Math.random() > 0.5 ? "bg-white" : "bg-slate-900"
-                          } rounded-sm`}
-                        ></div>
-                      ))}
-                    </div>
-                  </div>
-                  <p className="text-sm text-slate-600 font-medium">
-                    App Store
-                  </p>
-                </div>
-                <div className="text-center">
-                  <div className="w-32 h-32 bg-white border-2 border-slate-300 rounded-lg p-2 mb-4 shadow-md">
-                    <div className="w-full h-full bg-slate-900 rounded grid grid-cols-8 gap-px p-1">
-                      {Array.from({ length: 64 }).map((_, i) => (
-                        <div
-                          key={i}
-                          className={`${
-                            Math.random() > 0.4 ? "bg-white" : "bg-slate-900"
-                          } rounded-sm`}
-                        ></div>
-                      ))}
-                    </div>
-                  </div>
-                  <p className="text-sm text-slate-600 font-medium">
-                    Google Play
-                  </p>
-                </div>
-              </div>
-            </div>
+      {/* CTA Section */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
+            Siap Memesan Layanan <span className="text-[#75daff]">Bershine?</span>
+          </h2>
+          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+            Hubungi kami sekarang untuk konsultasi gratis dan dapatkan penawaran terbaik
+          </p>
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <Button size="lg" className="font-semibold" onClick={() => onNavigate("pemesanan")}>
+              Pesan Sekarang
+            </Button>
+            <Button size="lg" variant="outline" className="font-semibold" onClick={() => onNavigate("tentang")}>
+              Hubungi Kami
+            </Button>
           </div>
         </div>
-      </div>
-
-      {/* FAQ Section */}
-      <div className="py-20 px-4 bg-slate-50">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-slate-900 mb-4">
-              Pertanyaan yang Sering Ditanyakan
-            </h2>
-            <p className="text-xl text-slate-600">
-              Temukan jawaban untuk pertanyaan umum tentang layanan kami
-            </p>
-          </div>
-
-          <div className="space-y-6">
-            {[
-              {
-                question:
-                  "Berapa lama waktu yang dibutuhkan untuk pembersihan?",
-                answer:
-                  "Waktu pembersihan bervariasi tergantung jenis layanan. Pembersihan rumah membutuhkan 3-4 jam, kantor 2-3 jam, dan layanan lainnya sesuai estimasi yang tertera.",
-              },
-              {
-                question: "Apakah teknisi sudah terverifikasi dan terpercaya?",
-                answer:
-                  "Ya, semua teknisi kami telah melalui proses seleksi ketat, pelatihan profesional, dan verifikasi background check. Kami juga menyediakan asuransi untuk keamanan Anda.",
-              },
-              {
-                question: "Bagaimana cara memesan layanan?",
-                answer:
-                  "Anda bisa memesan melalui aplikasi Bershine di smartphone atau website kami. Pilih layanan, upload foto ruangan untuk estimasi akurat, tentukan jadwal, dan teknisi akan datang sesuai waktu yang ditentukan.",
-              },
-              {
-                question: "Apakah ada garansi untuk layanan yang diberikan?",
-                answer:
-                  "Ya, kami memberikan garansi untuk semua layanan kami. Jika Anda tidak puas dengan hasil pembersihan, kami akan melakukan pembersihan ulang tanpa biaya tambahan.",
-              },
-            ].map((faq, index) => (
-              <div
-                key={index}
-                className="bg-white rounded-lg p-6 shadow-sm border border-slate-200"
-              >
-                <h3 className="text-lg font-semibold text-slate-900 mb-3">
-                  {faq.question}
-                </h3>
-                <p className="text-slate-600 leading-relaxed">{faq.answer}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Service Detail Modal */}
-      {selectedService && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="p-8">
-              {/* Header */}
-              <div className="flex items-center justify-between mb-6">
-                <div className="flex items-center gap-4">
-                  <div className="w-16 h-16 rounded-full bg-slate-900 flex items-center justify-center">
-                    <selectedService.icon className="h-8 w-8 text-white" />
-                  </div>
-                  <div>
-                    <h2 className="text-2xl font-bold text-slate-900">
-                      {selectedService.title}
-                    </h2>
-                    <p className="text-3xl font-bold text-[#75daff]">
-                      {selectedService.price}
-                    </p>
-                  </div>
-                </div>
-                <button
-                  onClick={closeModal}
-                  className="w-10 h-10 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center transition-colors"
-                >
-                  <X className="h-5 w-5 text-slate-600" />
-                </button>
-              </div>
-
-              {/* Description */}
-              <div className="mb-6">
-                <h3 className="text-lg font-semibold text-slate-900 mb-2">
-                  Deskripsi Layanan
-                </h3>
-                <p className="text-slate-600 leading-relaxed">
-                  {selectedService.description}
-                </p>
-              </div>
-
-              {/* Features */}
-              <div className="mb-6">
-                <h3 className="text-lg font-semibold text-slate-900 mb-3">
-                  Yang Anda Dapatkan
-                </h3>
-                <ul className="space-y-2">
-                  {selectedService.features.map((feature, index) => (
-                    <li key={index} className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-green-500" />
-                      <span className="text-slate-600">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Duration */}
-              <div className="mb-8">
-                <h3 className="text-lg font-semibold text-slate-900 mb-2">
-                  Estimasi Waktu
-                </h3>
-                <div className="flex items-center gap-2">
-                  <Clock className="w-5 h-5 text-slate-900" />
-                  <span className="text-slate-600">
-                    {selectedService.duration}
-                  </span>
-                </div>
-              </div>
-
-              {/* Action Buttons */}
-              <div className="flex gap-4">
-                <Button
-                  variant="outline"
-                  className="flex-1"
-                  onClick={closeModal}
-                >
-                  Tutup
-                </Button>
-                <Button className="flex-1" size="lg">
-                  Pesan Sekarang
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+      </section>
     </div>
-  );
+  )
 }
